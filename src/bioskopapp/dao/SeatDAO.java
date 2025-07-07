@@ -14,23 +14,14 @@ import java.util.List;
 
 public class SeatDAO {
 
-    /**
-     * Menambahkan sejumlah kursi ke database untuk sebuah jadwal tayang.
-     * Asumsi: Nomor kursi dibuat secara berurutan (misal: A1, A2, B1, dst.).
-     * Anda bisa menyesuaikan logika penomoran kursi ini.
-     *
-     * @param scheduleId ID jadwal tayang.
-     * @param rows Jumlah baris kursi (misal: A, B, C).
-     * @param seatsPerRow Jumlah kursi per baris (misal: 1, 2, 3...).
-     * @throws SQLException Jika terjadi kesalahan SQL.
-     */
+    
     public void addSeats(int scheduleId, int rows, int seatsPerRow) throws SQLException {
         String sql = "INSERT INTO seats (schedule_id, nomor_kursi, status) VALUES (?, ?, ?)";
         Connection conn = null;
         PreparedStatement pstmt = null;
         try {
             conn = DatabaseConnection.getConnection();
-            conn.setAutoCommit(false); // Mulai transaksi
+            conn.setAutoCommit(false);
             pstmt = conn.prepareStatement(sql);
 
             for (char rowChar = 'A'; rowChar < ('A' + rows); rowChar++) {
@@ -38,8 +29,8 @@ public class SeatDAO {
                     String nomorKursi = String.valueOf(rowChar) + seatNum;
                     pstmt.setInt(1, scheduleId);
                     pstmt.setString(2, nomorKursi);
-                    pstmt.setString(3, "available"); // Status default
-                    pstmt.addBatch(); // Tambahkan ke batch untuk eksekusi massal
+                    pstmt.setString(3, "available"); 
+                    pstmt.addBatch(); 
                 }
             }
             pstmt.executeBatch(); // Eksekusi semua perintah dalam batch

@@ -93,7 +93,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(lblAdminTitle)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPaneAdmin)
@@ -109,13 +109,14 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblAdminTitle)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPaneAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneAdmin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogout)
                 .addGap(15, 15, 15))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1554, 847));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed

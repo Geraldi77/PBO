@@ -1,29 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package bioskopapp.gui;
 
-import bioskopapp.dao.AdminDAO; // Import AdminDAO untuk otentikasi admin
+import bioskopapp.dao.AdminDAO; 
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 public class MainMenuFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainMenuFrame
-     */
+    
     public MainMenuFrame() {
         initComponents();
-        setupFrameProperties(); // Atur properti frame (judul, posisi, dll.)
-    
+        setupFrameProperties();
     }
     
     private void setupFrameProperties() {
-        this.setTitle("Sistem Pemesanan Tiket Bioskop - Menu Utama"); // Judul jendela
-        this.setLocationRelativeTo(null); // Posisikan jendela di tengah layar
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Aplikasi akan keluar saat jendela ditutup
-        // this.setResizable(false); // Opsional: jika Anda tidak ingin jendela bisa diubah ukurannya
+        this.setTitle("Sistem Pemesanan Tiket Bioskop - Menu Utama");
+        this.setLocationRelativeTo(null); 
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     /**
@@ -45,19 +38,23 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistem Pemesanan Tiket Bioskop - Menu Utama");
+        setPreferredSize(new java.awt.Dimension(1540, 840));
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Bioskop RGAJ");
 
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblUsername.setText("Username : ");
 
         txtUsername.setToolTipText("Masukkan username admin");
 
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblPassword.setText("Password :");
 
         txtPassword.setToolTipText("Masukkan password admin");
 
+        btnAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnAdminLogin.setText("Login");
         btnAdminLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,55 +74,57 @@ public class MainMenuFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAdminLogin))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 785, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAdminLogin, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblUsername)
                         .addGap(18, 18, 18)
                         .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
+                        .addGap(30, 30, 30)
+                        .addComponent(lblPassword)
+                        .addGap(34, 34, 34)
                         .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16))
+                .addGap(66, 66, 66))
             .addComponent(btnUserBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitle)
-                    .addComponent(lblUsername)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAdminLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(btnUserBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblUsername)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAdminLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblTitle)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUserBooking, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
                 .addGap(9, 9, 9))
         );
 
-        pack();
+        setBounds(0, 0, 1554, 847);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminLoginActionPerformed
         String username = txtUsername.getText();
-        String password = new String(txtPassword.getPassword()); // Ambil password dari JPasswordField
+        String password = new String(txtPassword.getPassword()); 
 
-        AdminDAO adminDAO = new AdminDAO(); // Buat instance AdminDAO
+        AdminDAO adminDAO = new AdminDAO(); 
         try {
             if (adminDAO.authenticate(username, password)) {
                 JOptionPane.showMessageDialog(this, "Login Admin Berhasil!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
                 AdminDashboardFrame adminDashboard = new AdminDashboardFrame();
                 adminDashboard.setVisible(true);
-                this.dispose(); // Tutup MainMenuFrame setelah login berhasil
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Username atau password salah!", "Login Gagal", JOptionPane.ERROR_MESSAGE);
             }
