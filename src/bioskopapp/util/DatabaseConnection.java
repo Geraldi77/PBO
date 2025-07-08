@@ -1,28 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package bioskopapp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane; // Untuk menampilkan pesan error GUI
+import javax.swing.JOptionPane; 
 
 public class DatabaseConnection {
 
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/bioskop_db?useSSL=false&serverTimezone=UTC";
-    private static final String USER = "root"; // Default user XAMPP
-    private static final String PASS = "";     // Default password XAMPP (kosong)
+    private static final String USER = "root";
+    private static final String PASS = "";     
 
     public static Connection getConnection() throws SQLException {
         Connection conn = null;
         try {
-            // Register JDBC driver
+            
             Class.forName(JDBC_DRIVER);
 
-            // Open a connection
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Database connected!");
@@ -33,7 +29,7 @@ public class DatabaseConnection {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Gagal terhubung ke database. Pastikan MySQL berjalan dan pengaturan koneksi sudah benar.\nError: " + e.getMessage(), "Kesalahan Koneksi Database", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
-            throw e; // Lemparkan kembali SQLException agar ditangani di DAO
+            throw e; 
         }
         return conn;
     }

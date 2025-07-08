@@ -1,28 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package bioskopapp.model;
 
 public class Admin {
-    private int id; // ID admin, biasanya auto-increment di DB
+    private int id; 
     private String username;
-    private String password; // Dalam aplikasi nyata, ini harus di-hash!
-
-    // Constructor untuk membuat objek Admin baru tanpa ID (saat menambah ke DB)
+    private String password;
+    
     public Admin(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    // Constructor untuk membuat objek Admin dengan ID (saat mengambil dari DB)
     public Admin(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
 
-    // --- Getters ---
     public int getId() {
         return id;
     }
@@ -35,7 +29,6 @@ public class Admin {
         return password;
     }
 
-    // --- Setters (jika diperlukan, misalnya jika ID di-generate setelah insert) ---
     public void setId(int id) {
         this.id = id;
     }
@@ -53,6 +46,5 @@ public class Admin {
         return "Admin{" +
                "id=" + id +
                ", username='" + username + '\'' +
-               '}'; // Jangan tampilkan password di toString untuk keamanan
-    }
+               '}'; }
 }

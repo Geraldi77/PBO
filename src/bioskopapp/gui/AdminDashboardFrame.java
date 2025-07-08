@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package bioskopapp.gui;
 
 
@@ -10,10 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/**
- *
- * @author Gemini
- */
+
 public class AdminDashboardFrame extends javax.swing.JFrame {
 
     private FilmManagementPanel filmPanel;
@@ -28,7 +22,7 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
     }
     
     private void setupFrameProperties() {
-        this.setTitle("Admin Dashboard - Sistem Pemesanan Tiket Bioskop");
+        this.setTitle("Admin Dashboard");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -47,12 +41,11 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
         jTabbedPaneAdmin.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                // Saat tab diganti, refresh panel yang relevan
                 int selectedIndex = jTabbedPaneAdmin.getSelectedIndex();
-                if (selectedIndex == 1) { // Tab "Kelola Jadwal"
+                if (selectedIndex == 1) { 
                     schedulePanel.loadComboBoxData();
                     schedulePanel.loadTableData();
-                } else if (selectedIndex == 2) { // Tab "Laporan Penjualan"
+                } else if (selectedIndex == 2) {
                     salesPanel.loadReportData();
                 }
             }
@@ -122,9 +115,9 @@ public class AdminDashboardFrame extends javax.swing.JFrame {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
          int confirm = JOptionPane.showConfirmDialog(this, "Apakah Anda yakin ingin logout?", "Konfirmasi Logout", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
-            MainMenuFrame mainFrame = new MainMenuFrame(); // Buat instance MainMenuFrame baru
-            mainFrame.setVisible(true); // Tampilkan kembali MainMenuFrame
-            this.dispose(); // Tutup AdminDashboardFrame saat ini
+            MainMenuFrame mainFrame = new MainMenuFrame(); 
+            mainFrame.setVisible(true); 
+            this.dispose(); 
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 

@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package bioskopapp.dao;
+
 import bioskopapp.model.Seat;
 import bioskopapp.util.DatabaseConnection;
 import java.sql.Connection;
@@ -33,12 +31,12 @@ public class SeatDAO {
                     pstmt.addBatch(); 
                 }
             }
-            pstmt.executeBatch(); // Eksekusi semua perintah dalam batch
-            conn.commit(); // Komit transaksi
+            pstmt.executeBatch(); 
+            conn.commit(); 
             System.out.println("Seats added successfully for schedule ID: " + scheduleId);
         } catch (SQLException e) {
             if (conn != null) {
-                conn.rollback(); // Rollback jika ada error
+                conn.rollback();
             }
             throw e;
         } finally {
@@ -47,13 +45,7 @@ public class SeatDAO {
         }
     }
 
-    /**
-     * Mengambil semua kursi untuk jadwal tayang tertentu.
-     *
-     * @param scheduleId ID jadwal tayang.
-     * @return List objek Seat.
-     * @throws SQLException Jika terjadi kesalahan SQL.
-     */
+    
     public List<Seat> getSeatsByScheduleId(int scheduleId) throws SQLException {
         List<Seat> seats = new ArrayList<>();
         String sql = "SELECT seat_id, schedule_id, nomor_kursi, status FROM seats WHERE schedule_id = ? ORDER BY nomor_kursi";
@@ -82,12 +74,7 @@ public class SeatDAO {
         return seats;
     }
 
-    /**
-     * Memperbarui status kursi (misal: dari 'available' menjadi 'booked').
-     *
-     * @param seat Objek Seat dengan ID dan status yang diperbarui.
-     * @throws SQLException Jika terjadi kesalahan SQL.
-     */
+    
     public void updateSeatStatus(Seat seat) throws SQLException {
         String sql = "UPDATE seats SET status = ? WHERE seat_id = ?";
         Connection conn = null;
@@ -105,12 +92,7 @@ public class SeatDAO {
         }
     }
     
-    /**
-     * Menghapus semua kursi terkait dengan jadwal tertentu.
-     * Ini penting saat jadwal dihapus.
-     * @param scheduleId ID jadwal tayang.
-     * @throws SQLException Jika terjadi kesalahan SQL.
-     */
+    
     public void deleteSeatsByScheduleId(int scheduleId) throws SQLException {
         String sql = "DELETE FROM seats WHERE schedule_id = ?";
         Connection conn = null;

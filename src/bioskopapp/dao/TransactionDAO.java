@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package bioskopapp.dao;
 import bioskopapp.model.Transaction;
 import bioskopapp.model.TransactionDetail;
@@ -19,10 +16,7 @@ import java.util.List;
 
 public class TransactionDAO {
 
-    /**
-     * Menambahkan transaksi pemesanan tiket baru ke database.
-     * Diperbarui untuk menyimpan metode dan status pembayaran.
-     */
+    
     public void addTransaction(Transaction transaction) throws SQLException {
         String sql = "INSERT INTO transactions (schedule_id, nomor_kursi, nama_pemesan, tanggal_pesan, total_bayar, metode_pembayaran, status_pembayaran) VALUES (?, ?, ?, ?, ?, ?, ?)";
         Connection conn = null;
@@ -51,7 +45,6 @@ public class TransactionDAO {
         }
     }
     
-    // Metode getTransactionDetails() dan lainnya tetap sama
     public List<TransactionDetail> getTransactionDetails() throws SQLException {
         List<TransactionDetail> details = new ArrayList<>();
         String sql = "SELECT t.transaction_id, f.judul, s.tanggal_tayang, s.waktu_mulai, " +

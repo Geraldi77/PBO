@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package bioskopapp.gui;
 
 
@@ -30,11 +27,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.util.Calendar;
 
-/**
- * Panel untuk manajemen data jadwal tayang (CRUD).
- *
- * @author Gemini
- */
 public class ScheduleManagementPanel extends javax.swing.JPanel {
     
     private ScheduleDAO scheduleDAO;
@@ -210,6 +202,9 @@ public class ScheduleManagementPanel extends javax.swing.JPanel {
         spinnerWaktu = new javax.swing.JSpinner();
         txtHarga = new javax.swing.JTextField();
         txtStudio = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSchedules = new javax.swing.JTable();
@@ -231,6 +226,12 @@ public class ScheduleManagementPanel extends javax.swing.JPanel {
 
         spinnerWaktu.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(), null, null, java.util.Calendar.HOUR));
 
+        jLabel1.setText("Harga");
+
+        jLabel2.setText("Studio");
+
+        jLabel3.setText("Jam");
+
         javax.swing.GroupLayout formPanelLayout = new javax.swing.GroupLayout(formPanel);
         formPanel.setLayout(formPanelLayout);
         formPanelLayout.setHorizontalGroup(
@@ -240,12 +241,17 @@ public class ScheduleManagementPanel extends javax.swing.JPanel {
                 .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cmbFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(206, 206, 206)
+                .addGap(136, 136, 136)
+                .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
+                .addGap(29, 29, 29)
                 .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtHarga)
                     .addComponent(txtStudio)
                     .addComponent(spinnerWaktu))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         formPanelLayout.setVerticalGroup(
             formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,13 +259,18 @@ public class ScheduleManagementPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spinnerWaktu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinnerWaktu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(formPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtStudio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addGap(21, 21, 21))
         );
 
@@ -357,10 +368,18 @@ public class ScheduleManagementPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Silakan pilih film!", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
         if (dateChooser.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Silakan pilih tanggal tayang!", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        
+        LocalDate selectedDate = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if (selectedDate.isBefore(LocalDate.now())){
+        JOptionPane.showMessageDialog(this,"Tanggal tidak Valid!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+        return;
+        }
+        
         String hargaStr = txtHarga.getText().trim();
         if (hargaStr.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Harga tiket harus diisi!", "Peringatan", JOptionPane.WARNING_MESSAGE);
@@ -481,6 +500,9 @@ public class ScheduleManagementPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbFilm;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JPanel formPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblMainTitle;

@@ -73,7 +73,6 @@ public class SeatSelectionFrame extends JFrame {
         JPanel mainPanel = new JPanel(new BorderLayout(20, 20));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // TOP PANEL: Film Info and Schedule Selection
         JPanel topPanel = new JPanel(new BorderLayout());
         lblFilmTitle = new JLabel("Judul Film");
         lblFilmTitle.setFont(new Font("Segoe UI", Font.BOLD, 24));
@@ -88,12 +87,11 @@ public class SeatSelectionFrame extends JFrame {
         topPanel.add(titlePanel, BorderLayout.WEST);
         topPanel.add(cmbSchedules, BorderLayout.EAST);
 
-        // CENTER PANEL: Seat Grid
         seatGridPanel = new JPanel();
         seatGridPanel.setBorder(BorderFactory.createTitledBorder("Pilih Kursi"));
 
 
-        // BOTTOM PANEL: Booking Details and Actions
+        
         JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
         JPanel confirmationPanel = new JPanel(new GridLayout(0, 1, 5, 5));
         confirmationPanel.setBorder(BorderFactory.createTitledBorder("Detail Pemesanan"));
@@ -121,14 +119,14 @@ public class SeatSelectionFrame extends JFrame {
         bottomPanel.add(confirmationPanel, BorderLayout.CENTER);
         bottomPanel.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Add panels to the main panel
+        
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(new JScrollPane(seatGridPanel), BorderLayout.CENTER);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
 
-        // Action Listeners
+        
         cmbSchedules.addActionListener(e -> {
             ScheduleItem item = (ScheduleItem) cmbSchedules.getSelectedItem();
             if (item != null && item.getSchedule() != null) {
@@ -236,18 +234,17 @@ public class SeatSelectionFrame extends JFrame {
             return;
         }
 
-        // Kumpulkan semua data yang diperlukan
         double totalPrice = selectedSeats.size() * ticketPrice;
 
-        // Buka TransactionFrame dan kirim data
+        
         TransactionFrame transactionFrame = new TransactionFrame(this, selectedFilm, selectedSchedule, selectedSeats, customerName, totalPrice);
         transactionFrame.setVisible(true);
-        this.setVisible(false); // Sembunyikan frame ini sementara pembayaran diproses
+        this.setVisible(false); 
     }
     
-    // Dipanggil dari TransactionFrame setelah transaksi selesai
+    
     public void transactionCompleted() {
-        loadSeatLayout(); // Refresh denah kursi
+        loadSeatLayout(); 
         txtCustomerName.setText("");
         selectedSeats.clear();
         updateBookingDetails();
@@ -258,7 +255,7 @@ public class SeatSelectionFrame extends JFrame {
         this.dispose();
     }
     
-    // Inner class untuk item di JComboBox
+    
     private class ScheduleItem {
         private Schedule schedule;
         private String displayText;
@@ -281,7 +278,7 @@ public class SeatSelectionFrame extends JFrame {
         public String toString() { return displayText; }
     }
 
-    // Inner class untuk tombol kursi
+    
     private class SeatButton extends JToggleButton {
         private Seat seat;
         public SeatButton(Seat seat) {

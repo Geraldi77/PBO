@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package bioskopapp.gui;
 
 import bioskopapp.dao.TransactionDAO;
@@ -12,21 +9,24 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JFileChooser;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
 
 public class SalesReportPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SalesReportPanel
-     */
+    
     private TransactionDAO transactionDAO;
     private DefaultTableModel tableModel;
 
-    /**
-     * Creates new form SalesReportPanel
-     */
+    
     public SalesReportPanel() {
         initComponents();
         transactionDAO = new TransactionDAO();
@@ -45,7 +45,7 @@ public class SalesReportPanel extends javax.swing.JPanel {
         
         lblTotalRevenue.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblTotalRevenueValue.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        lblTotalRevenueValue.setForeground(new Color(0, 153, 51)); // Warna hijau
+        lblTotalRevenueValue.setForeground(new Color(0, 153, 51));
     }
 
     private void setupTable() {
@@ -66,7 +66,7 @@ public class SalesReportPanel extends javax.swing.JPanel {
         double totalRevenue = 0;
         
         try {
-            // Panggil method baru dari TransactionDAO
+            
             List<TransactionDetail> transactionDetails = transactionDAO.getTransactionDetails();
             
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu, HH:mm");
@@ -85,7 +85,6 @@ public class SalesReportPanel extends javax.swing.JPanel {
                 totalRevenue += detail.getTotalPrice();
             }
             
-            // Update label total pendapatan
             lblTotalRevenueValue.setText(currencyFormatter.format(totalRevenue));
 
         } catch (SQLException e) {
@@ -149,14 +148,11 @@ public class SalesReportPanel extends javax.swing.JPanel {
                             .addComponent(lblMainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(27, 27, 27)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblTotalRevenue)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblTotalRevenueValue, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblTotalRevenueValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTotalRevenue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(163, 163, 163))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

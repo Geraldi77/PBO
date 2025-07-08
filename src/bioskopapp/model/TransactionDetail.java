@@ -1,19 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package bioskopapp.model;
 
 import java.time.LocalDateTime;
 
-/**
- * Kelas ini adalah model untuk menampung data gabungan dari beberapa tabel
- * untuk keperluan laporan penjualan.
- */
+
 public class TransactionDetail {
     private int transactionId;
     private String filmTitle;
-    private String scheduleInfo; // Contoh: "10 Jun 2025, 19:00"
+    private String scheduleInfo; 
     private String seatNumbers;
     private String customerName;
     private double totalPrice;
@@ -29,7 +23,7 @@ public class TransactionDetail {
         this.transactionTime = transactionTime;
     }
 
-    // Getters
+    
     public int getTransactionId() { return transactionId; }
     public String getFilmTitle() { return filmTitle; }
     public String getScheduleInfo() { return scheduleInfo; }

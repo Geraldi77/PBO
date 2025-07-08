@@ -20,18 +20,13 @@ import javax.swing.SwingConstants;
 
 public class UserBookingFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form UserBookingFrame
-     */
     public UserBookingFrame() {
         initComponents();
         
-        // --- Kode Kustom Anda ---
         loadFilmsToGrid();
-        this.setLocationRelativeTo(null); // Agar frame muncul di tengah layar
+        this.setLocationRelativeTo(null);
         this.setTitle("Pemesanan Tiket Bioskop - Pilih Film");
 
-        // Menambahkan listener untuk tombol close ('X') pada frame
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -40,21 +35,16 @@ public class UserBookingFrame extends javax.swing.JFrame {
         });
     }
 
-    /**
-     * Kembali ke menu utama dan menutup frame ini.
-     */
+    
     private void goBackToMainMenu() {
         new MainMenuFrame().setVisible(true);
         this.dispose();
     }
 
-    /**
-     * Mengambil data film dari database dan menampilkannya di panel grid.
-     */
+    
     private void loadFilmsToGrid() {
         FilmDAO filmDAO = new FilmDAO();
         try {
-            // Bersihkan panel sebelum menambahkan kartu baru
             panelFilmGrid.removeAll();
 
             List<Film> films = filmDAO.getAllFilms();
@@ -62,13 +52,11 @@ public class UserBookingFrame extends javax.swing.JFrame {
                 panelFilmGrid.add(new JLabel("Tidak ada film yang sedang tayang."));
             } else {
                 for (Film film : films) {
-                    // Buat kartu untuk setiap film dan tambahkan ke panel
                     JPanel card = createFilmCard(film);
                     panelFilmGrid.add(card);
                 }
             }
 
-            // Perbarui UI untuk menampilkan perubahan
             panelFilmGrid.revalidate();
             panelFilmGrid.repaint();
 
@@ -78,11 +66,7 @@ public class UserBookingFrame extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Membuat sebuah JPanel yang berfungsi sebagai kartu visual untuk satu film.
-     * @param film Objek film yang akan ditampilkan.
-     * @return JPanel yang berisi poster dan judul film.
-     */
+    
     private JPanel createFilmCard(Film film) {
         JPanel card = new JPanel(new BorderLayout(10, 10));
         card.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(220, 220, 220)));
@@ -108,14 +92,11 @@ public class UserBookingFrame extends javax.swing.JFrame {
         card.add(posterLabel, BorderLayout.CENTER);
         card.add(titleLabel, BorderLayout.SOUTH);
 
-        // Menambahkan aksi saat kartu film di-klik
         card.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Buka frame pemilihan kursi dengan mengirim data film yang dipilih
                 SeatSelectionFrame seatFrame = new SeatSelectionFrame(film);
                 seatFrame.setVisible(true);
-                // Tutup frame ini
                 UserBookingFrame.this.dispose();
             }
         });
@@ -135,33 +116,43 @@ public class UserBookingFrame extends javax.swing.JFrame {
         scrollPaneFilms = new javax.swing.JScrollPane();
         panelFilmGrid = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelFilmGrid.setLayout(new java.awt.GridLayout(1, 4, 20, 20));
         scrollPaneFilms.setViewportView(panelFilmGrid);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jLabel1.setText("Sedang Tayang");
+        getContentPane().add(scrollPaneFilms, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, 1540, 610));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollPaneFilms)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(671, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(666, 666, 666))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        jLabel1.setFont(new java.awt.Font("Algerian", 1, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Sedang Tayang");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(671, 6, -1, 64));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new-years-eve-1085072_1280.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPaneFilms, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 830));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/new-years-eve-1085072_1280.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 1290, 960));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,41 +160,44 @@ public class UserBookingFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserBookingFrame().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(UserBookingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UserBookingFrame().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel panelFilmGrid;
     private javax.swing.JScrollPane scrollPaneFilms;
     // End of variables declaration//GEN-END:variables
